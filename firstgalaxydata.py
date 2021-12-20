@@ -49,12 +49,7 @@ class FIRSTGalaxyData(data.Dataset):
 
     urls = {
         "galaxy_data.zip": "https://syncandshare.desy.de/index.php/s/yWNQEoCxbpwxCWm/download",
-        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download",
-        "mingo_LOFAR.zip": "https://syncandshare.desy.de/index.php/s/4bfk8gAwyaTGAsX/download",
-        "mingo_LOFAR_h5.zip": "https://syncandshare.desy.de/index.php/s/oRiRNpezLtPPq2f/download",
-        "twin_FIRST_h5.zip": "https://syncandshare.desy.de/index.php/s/6QMf4FxqXcj4QXN/download",
-        "twin_LOFAR_FIRST.zip": "https://syncandshare.desy.de/index.php/s/GTy6CMCdnpJFboP/download",
-        "twin_LOFAR_h5.zip": "https://syncandshare.desy.de/index.php/s/konA9iBY6DMx9bj/download"
+        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download"
     }
 
     def __init__(self, root, class_definition="literature", input_data_list=None,
@@ -238,7 +233,13 @@ class FIRSTGalaxyData(data.Dataset):
         for data_file in self.input_data_list:
             path = os.path.join(root, data_file)
             if not os.path.exists(path):
-                return False
+                zip_path = "{}{}".format(os.path.splitext(data_file)[0], ".zip")
+                if os.path.exists(zip_path):
+                    with zipfile.ZipFile(os.path.join(root, zip_path), "r") as zip_ref:
+                        zip_ref.extractall(path=root)
+                    return True
+                else:
+                    return False
         return True
 
     def download(self):
@@ -291,6 +292,11 @@ if __name__ == "__main__":
         [transforms.ToTensor(),
          transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
 
+    data = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="train",
+                           input_data_list=["galaxy_data_h5.h5"],
+                           selected_catalogues=["MiraBest", "Capetti2017a", "Baldi2018", "Proctor_Tab1"],
+                           is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
+
     data_mingo = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="test",
                                  input_data_list=["mingo_LOFAR_h5.h5"],
                                  is_PIL=False, is_RGB=False, is_balanced=False, use_LOAFR_masking=True)
@@ -305,9 +311,7 @@ if __name__ == "__main__":
                                       input_data_list=["twin_FIRST_h5.h5"],
                                       is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
 
-    data = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="train",
-                           input_data_list=["galaxy_data_h5.h5"], selected_catalogues=["MiraBest", "Capetti2017a", "Baldi2018", "Proctor_Tab1"],
-                           is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
+
 
     test_data = FIRSTGalaxyData(root="./", class_definition="CDL1", selected_split="test",
                                 input_data_list=["galaxy_data_h5.h5"],
