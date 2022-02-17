@@ -19,16 +19,18 @@ the dataset contains the following number of samples per class.
 | test   | 50        | 50       | 50       | 50      |200       |
 | total   | 495        |924       |391       |348       |2158       |
 
-# Installation
+# Installation usage with pytorch
 If you want to use the dataset via the dataset class `FIRSTGalaxyData` with pytorch, install the necessary packages with
 
 `pip3 install -r requirements.txt`
 
-first, otherwise you will find the corredponding folder sturcture with images in the
-`galaxy_data.zip'
-file.
+first, otherwise you can use the dataset
+* directly with *.png files on disk or
+* load the dataset directly from the HDF5 file.
 
-# Basic usage
+Both options are descibed further below.
+
+# usage with pytorch
 ```
 from firstgalaxydata import FIRSTGalaxyData
 import torchvision.transforms as transforms
@@ -70,9 +72,62 @@ With `selected_catalogues` the dataset uses only the selected catalogues. All po
 
 ```data = FIRSTGalaxyData(root="./", selected_split="train", input_data_list=["galaxy_data_h5.h5"], selected_catalogues=selected_catalogues, is_PIL=True, is_RGB=True, transform=transformRGB)```
 
-With `class_definition` the class defintions of the dataset is selected. Choose either between `"literature"` or `"CDL1"`.
+# basic usage with files on disk
+You will also find the dataset in the 'galaxy_data' folder by unzipping `galaxy_data.zip`.
+It contains the following folder sturcture with *.png images. The most import information will also be part of the file name separated by underscores:
+`RA_DEC_Label_Source.png`
+E.g. `14.084_-9.608_3_MiraBest.png`
 ```
-data = FIRSTGalaxyData(root="./", selected_split="train", input_data_list=["galaxy_data_h5.h5"], class_definition="CDL1", is_PIL=True, is_RGB=True, transform=transformRGB)
+galaxy_data  
+│
+└───all
+│   │   Bent
+|   |       *.png  
+│   │   Compact
+|   |       *.png  
+|   |   FRI
+|   |       *.png  
+│   │   FRII
+|   |       *.png  
+│   
+└───test
+│   │   Bent
+|   |       *.png  
+│   │   Compact
+|   |       *.png  
+|   |   FRI
+|   |       *.png  
+│   │   FRII
+|   |       *.png
+│   
+└───train
+│   │   Bent
+|   |       *.png  
+│   │   Compact
+|   |       *.png  
+|   |   FRI
+|   |       *.png  
+│   │   FRII
+|   |       *.png
+│   
+└───valid
+│   │   Bent
+|   |       *.png  
+│   │   Compact
+|   |       *.png  
+|   |   FRI
+|   |       *.png  
+│   │   FRII
+|   |       *.png
 ```
-With CDL1 the classes FRI and Bent are subdivided into the three classes FRI-Sta, FRI-Nat and FRI-Wat as you can see in the following scheme:
-![image](img/Classification_Scheme_CDL1.png)
+ 
+
+# basic usage with HDF5 file 
+The dataset can also be accessed via the HDF5 file `galaxy_data_h5.h5`.
+
+## access with python
+
+## access with julia
+
+
+
