@@ -50,16 +50,14 @@ class FIRSTGalaxyData(data.Dataset):
         "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download"
     }
 
-    def __init__(self, root, class_definition="literature", input_data_list=None,
-                 selected_split="train", selected_classes=None, selected_catalogues=None, is_balanced=False,
-                 is_PIL=False, is_RGB=False, transform=None, target_transform=None, is_download=False):
+    def __init__(self, root, input_data_list=None, selected_split="train", selected_classes=None,
+                 selected_catalogues=None, is_balanced=False, is_PIL=False, is_RGB=False, transform=None,
+                 target_transform=None, is_download=False):
         """
         Parameters
         ----------
         :param root: str
             path directory to the data files
-        :param class_definition: str, optional (default is literature)
-            defines the galaxy class either from literature or CDL1
         :param input_data_list: list of str, optional
             list of data files for the data set with train, valid and test split within
         :param selected_split: str, optional (default is train)
@@ -86,7 +84,7 @@ class FIRSTGalaxyData(data.Dataset):
         self.input_data_list = [os.path.join("galaxy_data_h5.h5")] if input_data_list is None else input_data_list
         self.selected_split = selected_split
         self.is_balanced = is_balanced
-        self.class_definition = class_definition
+        self.class_definition = "literature"
         self.class_dict = get_class_dict(class_definition)
         self.class_dict_rev = get_class_dict_rev(class_definition)
         self.selected_classes = selected_classes
