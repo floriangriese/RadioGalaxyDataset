@@ -248,20 +248,3 @@ class FIRSTGalaxyData(data.Dataset):
         fmt_str += '{0}{1}'.format(tmp, self.target_transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
         return fmt_str
 
-
-if __name__ == "__main__":
-    transform = transforms.Compose(
-        [transforms.ToTensor(),
-         transforms.Normalize([0.5], [0.5])])
-
-    transformRGB = transforms.Compose(
-        [transforms.ToTensor(),
-         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
-
-    data = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="train",
-                           input_data_list=["galaxy_data_h5.h5"], selected_classes=["FRI", "FRII", "Compact", "Bent"],
-                           selected_catalogues=["MiraBest", "Capetti2017a", "Baldi2018", "Proctor_Tab1"],
-                           is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
-
-
-    print("Loading dataset finished.")
