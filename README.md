@@ -66,6 +66,8 @@ This will print out the following output:
 ## Options
 With `selected_split` the data split is selcted. Choose either `"train"` or `"valid"` or `"test"`.
 
+With `selected_classes` only data containing the chosen classes are return. e.g. `["FRI",FRII"]` returns only FRI and FRII images.
+
 With `selected_catalogues` the dataset uses only the selected catalogues. All possible catalogues are listed here:
 
 `selected_catalogues= ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1"]`
