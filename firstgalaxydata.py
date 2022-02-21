@@ -67,7 +67,7 @@ class FIRSTGalaxyData(data.Dataset):
         :param is_balanced: bool, optional (default is False)
             flag whether the dataset should be balanced,
             simplest balancing strategy, number data items determined by the class with the less data items
-        :param selected_classes:  list (str), optional
+        :param selected_classes:  list (str), optional, default ["FRI", "FRII", "Compact", "Bent"]
         :param selected_catalogues:  list (str), optional (default is None)
             if None all possible catalogues are selected ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018",
             "Proctor_Tab1"]
@@ -120,7 +120,6 @@ class FIRSTGalaxyData(data.Dataset):
         self.data = []
         self.labels = []
         self.coordinates = []
-        self.mask_params = []
 
         for file_name in data_list:
             file_path = os.path.join(self.root, file_name)
@@ -137,26 +136,16 @@ class FIRSTGalaxyData(data.Dataset):
                             coord = SkyCoord(data_entry.attrs["RA"], data_entry.attrs["DEC"], unit=(u.deg, u.deg))
                         else:
                             raise NotImplementedError("No coords in data_entry at key {}".format(key))
-                        if data_entry.attrs.__contains__("source_PA") and data_entry.attrs.__contains__(
-                                "source_size") and data_entry.attrs.__contains__("source_width"):
-                            mask_param = {"source_PA": data_entry.attrs["source_PA"],
-                                         "source_size": data_entry.attrs["source_size"],
-                                         "source_width": data_entry.attrs["source_width"]}
-                        else:
-                            mask_param = None
-                            warnings.warn("Could not find masking parameters, only available for LOFAR data. "
-                                          "mask_param will be None.", category=UserWarning)
+
                         self.data.append(d)
                         self.labels.append(np.array(label_entry))
                         self.coordinates.append(coord)
-                        self.mask_params.append(mask_param)
 
         if self.selected_classes is not None:
             indices = [i for i, d in enumerate(self.labels) if int(d) in self.class_labels]
             self.data = [self.data[i] for i in indices]
             self.labels = [self.labels[i] for i in indices]
             self.coordinates = [self.coordinates[i] for i in indices]
-            self.mask_params = [self.mask_params[i] for i in indices]
 
         # simplest balancing strategy, take data occurrence with the least count and ignore more data of other classes
         if self.is_balanced:
@@ -169,7 +158,6 @@ class FIRSTGalaxyData(data.Dataset):
             self.data = [self.data[i] for i in ind_list]
             self.labels = [self.labels[i] for i in ind_list]
             self.coordinates = [self.coordinates[i] for i in ind_list]
-            self.mask_params = [self.mask_params[i] for i in ind_list]
 
     def __getitem__(self, index):
         img, labels = self.data[index], self.labels[index]
