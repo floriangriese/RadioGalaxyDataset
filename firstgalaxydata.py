@@ -16,7 +16,7 @@ import zipfile
 
 class FIRSTGalaxyData(data.Dataset):
     """
-    FIRSTGalaxyData class provides FIRST/LOFAR images from various different data catalogs
+    FIRSTGalaxyData class provides FIRST images from various different data catalogs
 
     Attributes
     ----------
@@ -31,8 +31,6 @@ class FIRSTGalaxyData(data.Dataset):
         returns data item at index
     __getcoords__(index)
         returns coordinate of data item at index
-    __getmaskparam__(index)
-        returns mask_parameter of data item at index
     __len__()
         return number of data items
     _check_files()
@@ -53,8 +51,8 @@ class FIRSTGalaxyData(data.Dataset):
     }
 
     def __init__(self, root, class_definition="literature", input_data_list=None,
-                 selected_split="train", selected_classes=None, selected_catalogues=None, is_balanced=False, is_PIL=False, is_RGB=False,
-                 use_LOAFR_masking=False, transform=None, target_transform=None, is_download=False):
+                 selected_split="train", selected_classes=None, selected_catalogues=None, is_balanced=False,
+                 is_PIL=False, is_RGB=False, transform=None, target_transform=None, is_download=False):
         """
         Parameters
         ----------
@@ -72,14 +70,11 @@ class FIRSTGalaxyData(data.Dataset):
         :param selected_classes:  list (str), optional
         :param selected_catalogues:  list (str), optional (default is None)
             if None all possible catalogues are selected ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018",
-            "Proctor_Tab1", "LOFAR_Mingo", "LOFAR"]
+            "Proctor_Tab1"]
         :param is_PIL: bool, optional (default is False)
             flag to return a PIL object
         :param is_RGB: bool, optional (default is False)
             flag to return a RGB image with 3 channels (default greyscale image)
-        :param use_LOFAR_masking: bool, optional (default is False)
-            use an elliptic mask based on angle, width and size around the desired galaxy to mask out other galaxies
-            within the image
         :param transform: torchvision.transforms.transforms, optional (default None)
             transformation of data
         :param target_transform: torchvision.transforms.transforms, optional (default None)
@@ -100,14 +95,13 @@ class FIRSTGalaxyData(data.Dataset):
             self.selected_classes = self.class_dict.values()
         else:
             self.class_labels = [self.class_dict_rev[c] for c in selected_classes]
-        self.supported_catalogues = ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1", "LOFAR_Mingo", "LOFAR"]
+        self.supported_catalogues = ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1"]
         if selected_catalogues is None:
             self.selected_catalogues = self.supported_catalogues
         else:
             self.selected_catalogues = selected_catalogues
         self.is_PIL = is_PIL
         self.is_RGB = is_RGB
-        self.use_LOAFR_masking = use_LOAFR_masking
         self.transform = transform
         self.target_transform = target_transform
 
@@ -180,9 +174,6 @@ class FIRSTGalaxyData(data.Dataset):
     def __getitem__(self, index):
         img, labels = self.data[index], self.labels[index]
 
-        if self.use_LOAFR_masking and self.mask_params[index] is not None:
-            img = self.mask_image(img, self.mask_params[index])
-
         if self.is_PIL:
             assert img.dtype == np.uint8
             img = Image.fromarray(img, mode="L")
@@ -200,33 +191,8 @@ class FIRSTGalaxyData(data.Dataset):
     def __getcoords__(self, index):
         return self.coordinates[index]
 
-    def __getmaskparam__(self, index):
-        return self.mask_params[index]
-
     def __len__(self):
         return len(self.data)
-
-    def mask_image(self, img, mask_param):
-        m = np.zeros(img.shape, dtype=np.uint8)
-        CDL1_safety_factor = 2
-        resolution_factor = 300 / 450 * CDL1_safety_factor  # "px" / "arcsec"
-        source_PA = mask_param["source_PA"]
-        source_size = resolution_factor * mask_param["source_size"]
-        source_width = resolution_factor * mask_param["source_width"]
-        x0 = int(m.shape[0] / 2) - 0.5
-        y0 = int(m.shape[1] / 2) - 0.5
-        for x in range(m.shape[0]):
-            for y in range(m.shape[1]):
-                if (np.power((x - x0) / (source_width / 2), 2) + np.power((y - y0) / (source_size / 2), 2)) <= 1:
-                    m[x, y] = 1
-
-        m_pil = Image.fromarray(m, mode="L")
-        mask = m_pil.rotate(90.0 - source_PA)
-
-        mask = np.array(mask)
-        img_masked = np.multiply(img, mask)
-
-        return img_masked
 
     def _check_files(self):
         root = self.root
@@ -293,28 +259,9 @@ if __name__ == "__main__":
          transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
 
     data = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="train",
-                           input_data_list=["galaxy_data_h5.h5"],
+                           input_data_list=["galaxy_data_h5.h5"], selected_classes=["FRI", "FRII", "Compact", "Bent"],
                            selected_catalogues=["MiraBest", "Capetti2017a", "Baldi2018", "Proctor_Tab1"],
                            is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
 
-    data_mingo = FIRSTGalaxyData(root="./", class_definition="literature", selected_split="test",
-                                 input_data_list=["mingo_LOFAR_h5.h5"],
-                                 is_PIL=False, is_RGB=False, is_balanced=False, use_LOAFR_masking=True)
-
-    data,label = data_mingo.__getitem__(0)
-
-    data_twin_LOFAR = FIRSTGalaxyData(root="./", class_definition="CDL1", selected_split="test",
-                                      input_data_list=["twin_LOFAR_h5.h5"],
-                                      is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
-
-    data_twin_FIRST = FIRSTGalaxyData(root="./", class_definition="CDL1", selected_split="test",
-                                      input_data_list=["twin_FIRST_h5.h5"],
-                                      is_PIL=True, is_RGB=True, is_balanced=False, transform=transformRGB)
-
-
-
-    test_data = FIRSTGalaxyData(root="./", class_definition="CDL1", selected_split="test",
-                                input_data_list=["galaxy_data_h5.h5"],
-                                is_PIL=True, transform=transform)
 
     print("Loading dataset finished.")

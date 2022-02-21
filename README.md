@@ -123,11 +123,19 @@ galaxy_data
  
 
 # basic usage with HDF5 file 
-The dataset can also be accessed via the HDF5 file `galaxy_data_h5.h5`.
+The dataset can also be accessed via the HDF5 file `galaxy_data_h5.h5`. 
+Every data entry consists of a group named `data_$(i)` with `i=1...n` where `n` is the total number of data entries.`
+Each group consists of the following data:
+* `Img`: two-dimensional uint8 array with (300,300)
+  * Attributes of `Img`:
+  * `RA` right ascension equatorial  coordinate  system (J2000): double
+  * `DEC` declination equatorial  coordinate  system (J2000): double 
+  * `Source`: string ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1"]
+  * `Filepath_literature`: string -> relative path to the *.png file in the folder `galaxy_data`
+* `Label_literature`: double scalar -> 0: ”FRI”, 1: ”FRII”, 2: ”Compact”, 3: ”Bent”
+* `Split_literature`: string -> ["train","test","valid"]
 
-## access with python
 
-## access with julia
 
 
 
