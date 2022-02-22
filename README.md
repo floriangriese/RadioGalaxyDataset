@@ -1,12 +1,12 @@
 # Radio Galaxy Dataset
 This Radio Galaxy Dataset is a collection and combination of several catalogues using the FIRST radio galaxy survey.
 The following catalogues are included in this dataset:
-* MiraBest [Catalog](https://academic.oup.com/mnras/article/466/4/4346/2843096), [Source](https://zenodo.org/record/4288837#.YFSBEdwxlaT)
-* Gendre [Catalog](https://academic.oup.com/mnras/article/404/4/1719/1081038?login=true), Supplementary Data: mnras0404-1719-SD1.pdf, data tables CoNFIG-1 to CoNFIG-4
-* Capetti 2017a [Catalog](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/aa29287-16.html), [Table](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/T1.html)
-* Capette 2017b [Catalog](https://www.aanda.org/articles/aa/full_html/2017/05/aa30247-16/aa30247-16.html), [Table](http://cdsarc.u-strasbg.fr/viz-bin/qcat?J/A+A/601/A81)
-* Balid 2018 [Catalog](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/aa31333-17.html), [Table](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/T1.html)
-* Proctor [Catalog](https://ui.adsabs.harvard.edu/abs/2011ApJS..194...31P/abstract), [Table](https://iopscience.iop.org/article/10.1088/0067-0049/194/2/31#apjs390184t1), data from Table 1 with label “WAT” and “NAT”
+* MiraBest [Catalogue](https://academic.oup.com/mnras/article/466/4/4346/2843096), [Source](https://zenodo.org/record/4288837#.YFSBEdwxlaT)
+* Gendre [Catalogue](https://academic.oup.com/mnras/article/404/4/1719/1081038?login=true), Supplementary Data: mnras0404-1719-SD1.pdf, data tables CoNFIG-1 to CoNFIG-4
+* Capetti 2017a [Catalogue](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/aa29287-16.html), [Table](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/T1.html)
+* Capette 2017b [Catalogue](https://www.aanda.org/articles/aa/full_html/2017/05/aa30247-16/aa30247-16.html), [Table](http://cdsarc.u-strasbg.fr/viz-bin/qcat?J/A+A/601/A81)
+* Balid 2018 [Catalogue](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/aa31333-17.html), [Table](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/T1.html)
+* Proctor [Catalogue](https://ui.adsabs.harvard.edu/abs/2011ApJS..194...31P/abstract), [Table](https://iopscience.iop.org/article/10.1088/0067-0049/194/2/31#apjs390184t1), data from Table 1 with label “WAT” and “NAT”
 
 When using the literature class definition of FRI, FRII, Compact and Bent as schown below, 
 ![image](img/Classification_Scheme.png)
@@ -132,10 +132,10 @@ Each group consists of the following data:
   * Attributes of `Img`:
   * `RA` right ascension equatorial  coordinate  system (J2000): double
   * `DEC` declination equatorial  coordinate  system (J2000): double 
-  * `Source`: string ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1"]
-  * `Filepath_literature`: string -> relative path to the *.png file in the folder `galaxy_data`
-* `Label_literature`: double scalar -> 0: ”FRI”, 1: ”FRII”, 2: ”Compact”, 3: ”Bent”
-* `Split_literature`: string -> ["train","test","valid"]
+  * `Source`: string, ["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b", "Baldi2018", "Proctor_Tab1"]
+  * `Filepath_literature`: string, relative path to the *.png file in the folder `galaxy_data`
+* `Label_literature`: double scalar, 0: ”FRI”, 1: ”FRII”, 2: ”Compact”, 3: ”Bent”
+* `Split_literature`: string, ["train","test","valid"]
 
 
 

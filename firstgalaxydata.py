@@ -10,7 +10,6 @@ import torchvision.transforms as transforms
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 from torchvision.datasets.utils import download_url
-from basic_utils import get_class_dict, get_class_dict_rev
 import zipfile
 
 
@@ -218,6 +217,31 @@ class FIRSTGalaxyData(data.Dataset):
 
         plt.subplots_adjust(top=0.95, bottom=0.0)
         plt.show()
+
+    def get_class_dict(definition):
+        """
+        Returns the class definition for the galaxy images.
+        :param definition: str, optional
+            either literature
+        :return: dict
+        """
+        if definition == global_definition_lit:
+            return {0: "FRI",
+                    1: "FRII",
+                    2: "Compact",
+                    3: "Bent"}
+        else:
+            raise Exception("Definition: {} is not implemented.".format(definition))
+
+    def get_class_dict_rev(definition):
+        """
+        Returns the reverse class definition for the galaxy images.
+        :param definition: str, optional
+        :return: dict
+        """
+        class_dict = get_class_dict(definition)
+        class_dict_rev = {v: k for k, v in class_dict.items()}
+        return class_dict_rev
 
     def __repr__(self):
         fmt_str = 'Dataset ' + self.__class__.__name__ + '\n'
