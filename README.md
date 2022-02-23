@@ -5,7 +5,7 @@ The following catalogues are included in this dataset:
 * Gendre [Catalogue](https://academic.oup.com/mnras/article/404/4/1719/1081038?login=true), Supplementary Data: mnras0404-1719-SD1.pdf, data tables CoNFIG-1 to CoNFIG-4
 * Capetti 2017a [Catalogue](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/aa29287-16.html), [Table](https://www.aanda.org/articles/aa/full_html/2017/02/aa29287-16/T1.html)
 * Capetti 2017b [Catalogue](https://www.aanda.org/articles/aa/full_html/2017/05/aa30247-16/aa30247-16.html), [Table](http://cdsarc.u-strasbg.fr/viz-bin/qcat?J/A+A/601/A81)
-* Balid 2018 [Catalogue](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/aa31333-17.html), [Table](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/T1.html)
+* Baldi 2018 [Catalogue](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/aa31333-17.html), [Table](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/T1.html)
 * Proctor [Catalogue](https://ui.adsabs.harvard.edu/abs/2011ApJS..194...31P/abstract), [Table](https://iopscience.iop.org/article/10.1088/0067-0049/194/2/31#apjs390184t1), data from Table 1 with label “WAT” and “NAT”
 
 When using the literature class definition of FRI, FRII, Compact and Bent as schown below, 
@@ -64,9 +64,9 @@ This will print out the following output:
 ```
 
 ## Options
-With `selected_split` the data split is selcted. Choose either `"train"` or `"valid"` or `"test"`.
+With `selected_split` the data split is selected. Choose either `"train"` or `"valid"` or `"test"`.
 
-With `selected_classes` only data containing the chosen classes are return. e.g. `["FRI",FRII"]` returns only FRI and FRII images.
+With `selected_classes` only data containing the chosen classes is returned. e.g. `["FRI",FRII"]` returns only FRI and FRII images.
 
 With `selected_catalogues` the dataset uses only the selected catalogues. All possible catalogues are listed here:
 
