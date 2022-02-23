@@ -126,7 +126,7 @@ galaxy_data
 
 # basic usage with HDF5 file 
 The dataset can also be accessed via the HDF5 file `galaxy_data_h5.h5`. 
-Every data entry consists of a group named `data_$(i)` with `i=1...n` where `n` is the total number of data entries.`
+Every data entry consists of a group named `data_$(i)` with `i=1...n` where `n` is the total number of data entries.
 Each group consists of the following data:
 * `Img`: two-dimensional uint8 array with (300,300)
   * Attributes of `Img`:
