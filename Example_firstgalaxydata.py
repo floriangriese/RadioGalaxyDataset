@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     print(data)
 
-    data = FIRSTGalaxyData(root="./", selected_split="train", input_data_list=["galaxy_data_h5.h5"],
+    data = FIRSTGalaxyData(root="./", selected_split="test", input_data_list=["galaxy_data_h5.h5"],
                            selected_classes=["FRI", "FRII", "Compact", "Bent"],
                            selected_catalogues=["Gendre", "MiraBest", "Capetti2017a", "Capetti2017b",
                                                 "Baldi2018", "Proctor_Tab1"],
