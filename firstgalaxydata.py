@@ -1,12 +1,10 @@
 from __future__ import print_function
 import os
-import warnings
 import numpy as np
 from PIL import Image
 import h5py
 import torch.utils.data as data
 import matplotlib.pyplot as plt
-import torchvision.transforms as transforms
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 from torchvision.datasets.utils import download_url
@@ -83,9 +81,8 @@ class FIRSTGalaxyData(data.Dataset):
         self.input_data_list = [os.path.join("galaxy_data_h5.h5")] if input_data_list is None else input_data_list
         self.selected_split = selected_split
         self.is_balanced = is_balanced
-        self.class_definition = "literature"
-        self.class_dict = get_class_dict(class_definition)
-        self.class_dict_rev = get_class_dict_rev(class_definition)
+        self.class_dict = self.get_class_dict()
+        self.class_dict_rev = self.get_class_dict_rev()
         self.selected_classes = selected_classes
         if selected_classes is None:
             self.class_labels = self.class_dict.keys()
@@ -123,9 +120,9 @@ class FIRSTGalaxyData(data.Dataset):
             with h5py.File(file_path, "r") as file:
                 for key in file.keys():
                     # filter for selected split
-                    if file[key + "/Split_" + self.class_definition].asstr()[()] == self.selected_split:
+                    if file[key + "/Split_literature"].asstr()[()] == self.selected_split:
                         data_entry = file[key + "/Img"]
-                        label_entry = file[key + "/Label_" + self.class_definition]
+                        label_entry = file[key + "/Label_literature"]
                         d = np.array(data_entry)
                         if data_entry.attrs["Source"] not in self.selected_catalogues:
                             continue
@@ -218,28 +215,22 @@ class FIRSTGalaxyData(data.Dataset):
         plt.subplots_adjust(top=0.95, bottom=0.0)
         plt.show()
 
-    def get_class_dict(definition):
+    def get_class_dict(self):
         """
         Returns the class definition for the galaxy images.
-        :param definition: str, optional
-            either literature
         :return: dict
         """
-        if definition == global_definition_lit:
-            return {0: "FRI",
-                    1: "FRII",
-                    2: "Compact",
-                    3: "Bent"}
-        else:
-            raise Exception("Definition: {} is not implemented.".format(definition))
+        return {0: "FRI",
+                1: "FRII",
+                2: "Compact",
+                3: "Bent"}
 
-    def get_class_dict_rev(definition):
+    def get_class_dict_rev(self):
         """
         Returns the reverse class definition for the galaxy images.
-        :param definition: str, optional
         :return: dict
         """
-        class_dict = get_class_dict(definition)
+        class_dict = self.get_class_dict()
         class_dict_rev = {v: k for k, v in class_dict.items()}
         return class_dict_rev
 
