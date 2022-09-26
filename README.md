@@ -24,6 +24,13 @@ the dataset contains the following number of samples per class.
 | test   | 50        | 50       | 50       | 50      |200       |
 | total   | 495        |924       |391       |348       |2158       |
 
+| classes    | Label |  
+| ----------- | ----------- |
+| FRI    | 0  |
+| FRII   | 1  | 
+| Compact| 2  | 
+| Bent   | 3  |
+
 # Installation usage with pytorch
 If you want to use the dataset via the dataset class `FIRSTGalaxyData` with pytorch, install the necessary packages with
 
