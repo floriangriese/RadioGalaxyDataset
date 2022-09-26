@@ -145,18 +145,25 @@ Each group consists of the following data:
 # References
 [1] R. H. Becker, R. L. White, D. J. Helfand, The FIRST Survey: Faint Images of the Radio Sky at Twenty Centimeters,
 The Astrophysical Journal 450 (1995) 559.
+
 [2] H. Miraghaei, P. N. Best, The nuclear properties and extended morphologies of powerful radio galaxies: the roles
 of host galaxy and environment, Monthly Notices of the Royal Astronomical Society (2017) stx007.
+
 [3] M. A. Gendre, P. N. Best, J. V. Wall, The combined nvss-first galaxies (config) sample - ii. comparison of space
 densities in the fanaroff-riley dichotomy, Monthly Notices of the Royal Astronomical Society (2010).
+
 [4] M. A. Gendre, J. V. Wall, The combined nvss-first galaxies (config) sample - i. sample definition, classification
 and evolution, Monthly Notices of the Royal Astronomical Society (2008).
+
 [5] A. Capetti, F. Massaro, R. D. Baldi, Fricat: A first catalog of fr i radio galaxies, Astronomy & Astrophysics 598
 (2017) A49.
+
 [6] A. Capetti, F. Massaro, R. D. Baldi, Friicat: A first catalog of fr ii radio galaxies, Astronomy & Astrophysics 601
 (2017) A81.
+
 [7] R. D. Baldi, A. Capetti, F. Massaro, Fr0cat: a first catalog of fr 0 radio galaxies, Astronomy & Astrophysics 609
 (2017) A1.
+
 [8] D. D. Proctor, Morphological annotations for groups in the first database, The Astrophysical Journal Supplement
 Series 194 (2011) 31.
 
