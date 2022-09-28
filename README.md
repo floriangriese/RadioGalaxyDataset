@@ -13,9 +13,25 @@ Further, the following catalogues are included in this dataset:
 * Baldi 2018 [[7]](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/aa31333-17.html), [Table](https://www.aanda.org/articles/aa/full_html/2018/01/aa31333-17/T1.html)
 * Proctor [[8]](https://ui.adsabs.harvard.edu/abs/2011ApJS..194...31P/abstract), [Table](https://iopscience.iop.org/article/10.1088/0067-0049/194/2/31#apjs390184t1), data from Table 1 with label “WAT” and “NAT”
 
-When using the literature class definition of FRI, FRII, Compact and Bent as schown below, 
+Examples for the class definitions of FRI, FRII, Compact and Bent are shown below, 
 ![image](img/Classification_Scheme.png)
-the dataset contains the following number of samples per class.
+with the labels
+
+| classes    | Label |  
+| ----------- | ----------- |
+| FRI    | 0  |
+| FRII   | 1  | 
+| Compact| 2  | 
+| Bent   | 3  |
+
+The dataset has the following total number of samples per class.
+
+| classes/split     | FRI |   FRII |     Compact |    Bent |   Total     |
+| ----------- | ----------- |----------- |----------- |-----------       |-----------|
+| total   | 495        |924       |391       |348       |2158       |
+
+We provide two splitting options for the dataset. 
+The first splitting option (galaxy_data_h5.zip) provides three splittings in train, valid and test with the following number of sample per class.
 
 | classes/split     | FRI |   FRII |     Compact |    Bent |   Total     |
 | ----------- | ----------- |----------- |----------- |-----------       |-----------|
@@ -24,12 +40,14 @@ the dataset contains the following number of samples per class.
 | test   | 50        | 50       | 50       | 50      |200       |
 | total   | 495        |924       |391       |348       |2158       |
 
-| classes    | Label |  
-| ----------- | ----------- |
-| FRI    | 0  |
-| FRII   | 1  | 
-| Compact| 2  | 
-| Bent   | 3  |
+The second splitting option (galaxy_data_crossvalid_0_h5.zip to galaxy_data_crossvalid_4_h5.zip and galaxy_data_crossvalid_test_h5.zip) provides a 5-fold cross validation dataset with a larger test set.
+
+| classes/split     | FRI |   FRII |     Compact |    Bent |   Total     |
+| ----------- | ----------- |----------- |----------- |-----------       |-----------|
+| 5-fold cross train   | 316        | 659       | 232       | 198      |1405       |
+| 5-fold cross valid   | 79        | 165       | 59       | 50      |353       |
+| test   | 100        | 100       | 100       | 100      |400       |
+| total   | 495        |924       |391       |348       |2158       |
 
 # Installation usage with pytorch
 If you want to use the dataset via the dataset class `FIRSTGalaxyData` with pytorch, install the necessary packages with

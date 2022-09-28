@@ -13,7 +13,7 @@ import zipfile
 
 class FIRSTGalaxyData(data.Dataset):
     """
-    FIRSTGalaxyData class provides FIRST images from various different data catalogs
+    FIRSTGalaxyData class provides FIRST images with labels from various different data catalogs
 
     Attributes
     ----------
@@ -39,12 +39,18 @@ class FIRSTGalaxyData(data.Dataset):
     show_coords():
         shows the coordinates of the images in a Aitoff projection
     __repr__()
-        presents import information aboout the dataset in the Repl
+        presents import information about the dataset in the Repl
      """
 
     urls = {
         "galaxy_data.zip": "https://syncandshare.desy.de/index.php/s/yWNQEoCxbpwxCWm/download",
-        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download"
+        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download",
+        "galaxy_data_crossvalid_0_h5.zip": "https://syncandshare.desy.de/index.php/s/QPjZBZE4WeCPDxg/download",
+        "galaxy_data_crossvalid_1_h5.zip": "https://syncandshare.desy.de/index.php/s/8iDGAAqxtdM2tj9/download",
+        "galaxy_data_crossvalid_2_h5.zip": "https://syncandshare.desy.de/index.php/s/j6gKn8HiMa8nB4J/download",
+        "galaxy_data_crossvalid_3_h5.zip": "https://syncandshare.desy.de/index.php/s/oSz6WdWtnZq4s8M/download",
+        "galaxy_data_crossvalid_4_h5.zip": "https://syncandshare.desy.de/index.php/s/qoNsik3sF39cRBG/download",
+        "galaxy_data_crossvalid_test_h5.zip": "https://syncandshare.desy.de/index.php/s/aM9eGcr8ydddCNM/download"
     }
 
     def __init__(self, root, input_data_list=None, selected_split="train", selected_classes=None,
@@ -161,7 +167,6 @@ class FIRSTGalaxyData(data.Dataset):
             img = Image.fromarray(img, mode="L")
             if self.is_RGB:
                 img = img.convert("RGB")
-        # else...return numpy array directly
 
         if self.transform is not None:
             img = self.transform(img)
