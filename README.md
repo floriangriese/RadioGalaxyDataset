@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/record/7120632#.YzRkWUpBzmE)](10.5281/zenodo.7120632)
 # Radio Galaxy Dataset
 This Radio Galaxy Dataset is a collection and combination of several catalogues using the FIRST radio galaxy survey [[1]](https://ui.adsabs.harvard.edu/abs/1995ApJ...450..559B/abstract).
 To the images from the FIRST radio galaxy survey the following license applies:
