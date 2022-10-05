@@ -43,8 +43,8 @@ class FIRSTGalaxyData(data.Dataset):
      """
 
     urls = {
-        "galaxy_data.zip": "https://syncandshare.desy.de/index.php/s/yWNQEoCxbpwxCWm/download",
-        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/9kLKJGxwARZdfiZ/download",
+        "galaxy_data.zip": "https://syncandshare.desy.de/index.php/s/rRFnxFgXZy2jprd/download",
+        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/SWTjiNAB3HTwqcZ/download",
         "galaxy_data_crossvalid_0_h5.zip": "https://syncandshare.desy.de/index.php/s/QPjZBZE4WeCPDxg/download",
         "galaxy_data_crossvalid_1_h5.zip": "https://syncandshare.desy.de/index.php/s/8iDGAAqxtdM2tj9/download",
         "galaxy_data_crossvalid_2_h5.zip": "https://syncandshare.desy.de/index.php/s/j6gKn8HiMa8nB4J/download",

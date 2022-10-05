@@ -12,6 +12,8 @@ if __name__ == "__main__":
     data = FIRSTGalaxyData(root="./", selected_split="train", input_data_list=["galaxy_data_h5.h5"],
                            is_PIL=True, is_RGB=True, transform=transformRGB)
 
+    img, label = data.__getitem__(0)
+
     print(data)
     data = FIRSTGalaxyData(root="./", selected_split="valid", input_data_list=["galaxy_data_h5.h5"],
                            is_PIL=True, is_RGB=True, transform=transformRGB)
