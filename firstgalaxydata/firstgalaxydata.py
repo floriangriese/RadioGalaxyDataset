@@ -9,6 +9,8 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 from torchvision.datasets.utils import download_url
 import zipfile
+#from importlib import resources
+#import io
 
 
 class FIRSTGalaxyData(data.Dataset):
