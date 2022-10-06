@@ -4,8 +4,19 @@
 cff-version: 1.2.0
 title: Radio Galaxy Dataset
 version: 0.1.1
-message: >-
-  "If you use this software, please cite it as below."
+message: |
+  If you use this software, please cite it as below.
+
+  BibTex:
+
+  @misc{Griese_zenodo_2022,
+  author = {Griese, Florian and Kummer, Janis and Rustige, Lennart},
+  url = {https://doi.org/10.5281/zenodo.7120632},
+  DOI = {10.5281/zenodo.7120632},
+  publisher = {zenodo},
+  year = {2022},
+}
+
 type: dataset
 authors:
   - given-names: Florian
@@ -20,9 +31,7 @@ authors:
     family-names: Rustige
     affiliation: CDCS
     orcid: 'https://orcid.org/0000-0002-0292-2477'
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.7120632
+doi: 10.5281/zenodo.7120632
 url: 'https://github.com/floriangriese/RadioGalaxyDataset'
 license: MIT
 date-released: 2022-10-6
