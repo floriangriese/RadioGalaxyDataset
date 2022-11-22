@@ -2,10 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Radio Galaxy Dataset
-version: 0.1.1
 message: "If you use this software, please cite it as below."
-
 authors:
   - given-names: Florian
     family-names: Griese
@@ -19,6 +16,8 @@ authors:
     family-names: Rustige
     affiliation: CDCS
     orcid: "https://orcid.org/0000-0002-0292-2477"
+title: Radio Galaxy Dataset
+version: 0.1.1
 doi: 10.5281/zenodo.7120632
 url: "https://github.com/floriangriese/RadioGalaxyDataset"
 license: MIT
