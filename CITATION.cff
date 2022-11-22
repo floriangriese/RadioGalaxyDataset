@@ -6,7 +6,6 @@ title: Radio Galaxy Dataset
 version: 0.1.1
 message: "If you use this software, please cite it as below."
 
-type: dataset
 authors:
   - given-names: Florian
     family-names: Griese
