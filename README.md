@@ -43,15 +43,6 @@ The first splitting option (galaxy_data_h5.zip) provides three splittings in tra
 | test   | 50        | 50       | 50       | 50      |200       |
 | total   | 495        |924       |391       |348       |2158       |
 
-The second splitting option (galaxy_data_crossvalid_0_h5.zip to galaxy_data_crossvalid_4_h5.zip and galaxy_data_crossvalid_test_h5.zip) provides a 5-fold cross validation dataset with a larger test set.
-
-| classes/split     | FRI |   FRII |     Compact |    Bent |   Total     |
-| ----------- | ----------- |----------- |----------- |-----------       |-----------|
-| 5-fold cross train   | 316        | 659       | 232       | 198      |1405       |
-| 5-fold cross valid   | 79        | 165       | 59       | 50      |353       |
-| test   | 100        | 100       | 100       | 100      |400       |
-| total   | 495        |924       |391       |348       |2158       |
-
 # Installation usage with pytorch
 If you want to use the dataset via the dataset class `FIRSTGalaxyData` with pytorch, install the necessary packages with
 
