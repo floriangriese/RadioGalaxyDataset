@@ -9,8 +9,6 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 from torchvision.datasets.utils import download_url
 import zipfile
-#from importlib import resources
-#import io
 
 
 class FIRSTGalaxyData(data.Dataset):
@@ -45,14 +43,14 @@ class FIRSTGalaxyData(data.Dataset):
      """
 
     urls = {
-        "galaxy_data.zip": "https://syncandshare.desy.de/index.php/s/rRFnxFgXZy2jprd/download",
-        "galaxy_data_h5.zip": "https://syncandshare.desy.de/index.php/s/SWTjiNAB3HTwqcZ/download",
-        "galaxy_data_crossvalid_0_h5.zip": "https://syncandshare.desy.de/index.php/s/QPjZBZE4WeCPDxg/download",
-        "galaxy_data_crossvalid_1_h5.zip": "https://syncandshare.desy.de/index.php/s/8iDGAAqxtdM2tj9/download",
-        "galaxy_data_crossvalid_2_h5.zip": "https://syncandshare.desy.de/index.php/s/j6gKn8HiMa8nB4J/download",
-        "galaxy_data_crossvalid_3_h5.zip": "https://syncandshare.desy.de/index.php/s/oSz6WdWtnZq4s8M/download",
-        "galaxy_data_crossvalid_4_h5.zip": "https://syncandshare.desy.de/index.php/s/qoNsik3sF39cRBG/download",
-        "galaxy_data_crossvalid_test_h5.zip": "https://syncandshare.desy.de/index.php/s/aM9eGcr8ydddCNM/download"
+        "galaxy_data.zip": "https://zenodo.org/record/7689127/files/galaxy_data.zip?download=1",
+        "galaxy_data_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_h5.zip?download=1",
+        "galaxy_data_crossvalid_0_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_0_h5.zip?download=1",
+        "galaxy_data_crossvalid_1_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_1_h5.zip?download=1",
+        "galaxy_data_crossvalid_2_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_2_h5.zip?download=1",
+        "galaxy_data_crossvalid_3_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_3_h5.zip?download=1",
+        "galaxy_data_crossvalid_4_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_4_h5.zip?download=1",
+        "galaxy_data_crossvalid_test_h5.zip": "https://zenodo.org/record/7689127/files/galaxy_data_crossvalid_test_h5.zip?download=1"
     }
 
     def __init__(self, root, input_data_list=None, selected_split="train", selected_classes=None,
